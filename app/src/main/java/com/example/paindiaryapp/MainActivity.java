@@ -135,23 +135,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView reminderTime = findViewById(R.id.reminder_time);
 
         int remindHour = hourOfDay;
-        int remindMinute = minute - 2;
-        if (minute == 0) {
-            remindMinute = 58;
-            remindHour = remindHour - 1;
+        int remindMinute;
+
+        if (minute <= 1) {
+            remindMinute = 58 + minute;
+            if (hourOfDay == 0) {
+                remindHour = 23;
+            } else {
+                remindHour--;
+        } else {
+            remindMinute = minute - 2;
         }
-        if (minute == 1) {
-            remindMinute = 59;
-            remindHour = remindHour - 1;
-        }
-        if (hourOfDay == 0 && minute == 0) {
-            remindMinute = 58;
-            remindHour = 23;
-        }
-        if (hourOfDay == 0 && minute == 1) {
-            remindMinute = 59;
-            remindHour = 23;
-        }
+
 
 //        String hour = Integer.toString(remindHour);
 //        String min = Integer.toString(remindMinute);
